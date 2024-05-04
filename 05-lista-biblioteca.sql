@@ -44,7 +44,6 @@ CREATE TABLE Devolucoes (
     FOREIGN KEY (EmprestimoID) REFERENCES Emprestimos(EmprestimoID)
 );
 
--- Inserindo dados
 -- Inserir registros na tabela TiposDeUsuarios
 INSERT INTO TiposDeUsuarios (TipoUsuarioID, Nome)
 VALUES
@@ -91,12 +90,9 @@ VALUES
     (5, 5, '2023-10-02', 0.00);
     
     
-    
-    
-    
--- [ 01 ]	SELECIONE TODOS OS LIVROS EMPRESTADOS ATUALMENTE COM OS NOMES DOS USUARIOS
+-- [ 01 ] SELECIONE TODOS OS LIVROS EMPRESTADOS ATUALMENTE COM OS NOMES DOS USUARIOS
 SELECT 	Livros.titulo AS "LIVRO EMPRESTADO", 
-		Usuarios.nome AS "USUARIO"
+	Usuarios.nome AS "USUARIO"
 FROM Livros
 INNER JOIN Emprestimos ON emprestimos.LivroID = Livros.livroID
 INNER JOIN Usuarios ON emprestimos.UsuarioID = Usuarios.UsuarioID;
@@ -121,7 +117,7 @@ WHERE Usuarios.TipoUsuarioID != 3;
 -- [ 05 ] LISTAR TODOS OS EMPRESTIMOS DE LIVROS FEITOS POR USUARIOS DO TIPO
 -- ESTUDANTE, INCLUINDO OS DETALHES DO LIVRO EMPRESTADO
 SELECT 	Usuarios.nome,
-		Livros.titulo,
+	Livros.titulo,
         Livros.autor,
         Livros.anoPublicacao
 FROM Usuarios
@@ -133,7 +129,7 @@ WHERE Usuarios.TipoUsuarioID = 1;
 -- [ 06 ] LISTAR TODOS OS EMPRESTIMOS DE LIVROS COM SUAS DEVOLUÇÕES CORRESPONDENTES,
 -- INCLUINDO OS NOMES DOS USUARIOS			
 SELECT	Emprestimos.*,
-		Devolucoes.DataDevolucao,
+	Devolucoes.DataDevolucao,
         Devolucoes.Penalidade,
         Usuarios.nome AS "Usuario"
 FROM Emprestimos
@@ -144,7 +140,7 @@ INNER JOIN Usuarios ON Usuarios.UsuarioID = Emprestimos.UsuarioID;
 -- [ 07 ] ENCONTRE O TOTAL DE EMPRESTIMOS FEITOS POR CADA USUARIO E ORDENE OS 
 -- RESULTADOS PELO NUMERO DE EMPRESTIMOS EM ORDEM DECRESCENTE
 SELECT 	u.Nome AS Usuario, 
-		COUNT(e.EmprestimoID) AS TotalEmprestimos
+	COUNT(e.EmprestimoID) AS TotalEmprestimos
 FROM Usuarios u
 INNER JOIN Emprestimos e ON u.UsuarioID = e.UsuarioID
 GROUP BY u.UsuarioID
@@ -154,7 +150,7 @@ ORDER BY TotalEmprestimos DESC;
 -- [ 08 ] ENCONTRE O NUMERO TOTAL DE EMPRESTIMOS POR ANO DE PUBLICACAO DOS LIVROS
 -- E ORDENE OS RESULTADOS PELO ANO EM ORDEM CRESCENTE
 SELECT	l.anoPublicacao AS AnoPublicacao,
-		COUNT(e.emprestimoID) AS TotalEmprestimos
+	COUNT(e.emprestimoID) AS TotalEmprestimos
 FROM Livros l
 INNER JOIN Emprestimos e ON e.livroID = l.livroID
 GROUP BY l.livroID, l.anoPublicacao
@@ -170,7 +166,7 @@ WHERE e.LivroID IS NULL;
 
 -- [ 10 ] MOSTRE O NUMERO TOTAL DE EMPRESTIMOS PARA CADA USUARIO
 SELECT 	u.Nome AS Usuario, 
-		COUNT(e.EmprestimoID) AS TotalEmprestimos
+	COUNT(e.EmprestimoID) AS TotalEmprestimos
 FROM Usuarios u
 INNER JOIN Emprestimos e ON u.UsuarioID = e.UsuarioID
 GROUP BY u.UsuarioID;
@@ -178,7 +174,7 @@ GROUP BY u.UsuarioID;
 
 -- [ 11 ] ENCONTRE O AUTOR COM A MAIOR QUANTIDADE DE LIVROS EMPRESTADOS
 SELECT	l.autor,
-		COUNT(e.emprestimoID) AS TotalEmprestimos
+	COUNT(e.emprestimoID) AS TotalEmprestimos
 FROM Livros l
 INNER JOIN Emprestimos e ON e.livroID = l.livroID
 GROUP BY l.autor;
@@ -199,7 +195,7 @@ FROM Devolucoes;
 
 -- [ 14 ] LISTE OS LIVROS EMPRESTADOS QUE FORAM PUBLICADOS ENTRE 1990 E 2000
 SELECT	l.titulo AS "LIVROS EMPRESTADOS",
-		l.anoPublicacao AS "ANO PUBLICAÇÃO"
+	l.anoPublicacao AS "ANO PUBLICAÇÃO"
 FROM Livros l 
 INNER JOIN Emprestimos e ON e.livroID = l.livroID
 WHERE l.anoPublicacao >= 1990 AND l.anoPublicacao <= 2000;
@@ -222,7 +218,7 @@ WHERE tu.nome IN ('Estudante', 'Professor');
 
 -- [ 17 ] MOSTRE O TOTAL DE EMPRESTIMOS POR USUARIO E FILTRE APENAS AQUELES COM MAIS DE 3 EMPRESTIMOS
 SELECT	u.UsuarioID, u.Nome AS NomeUsuario, 
-		COUNT(e.EmprestimoID) AS TotalEmprestimos
+	COUNT(e.EmprestimoID) AS TotalEmprestimos
 FROM Usuarios u
 INNER JOIN Emprestimos e ON u.UsuarioID = e.UsuarioID
 GROUP BY u.UsuarioID, u.Nome
