@@ -28,8 +28,6 @@ CREATE TABLE alunosxmateria (
   FOREIGN KEY (id_materia) REFERENCES materias(id_materia)
 );
 
-USE escola;
-
 -- Inserir registros na tabela alunos
 INSERT INTO alunos (RA, nome, idade, cpf, rg) VALUES 
 ('12345678901', 'Maria Silva', 19, '111.111.111-11', '11.111.111-1'),
