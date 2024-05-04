@@ -2,9 +2,9 @@
 -- os funcionários da farmácia, incluindo nome, cargo e salário.
 CREATE TABLE Funcionarios (
 	id_funcionario INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    cargo VARCHAR(20) NOT NULL,
-    salario DECIMAL (10,2) NOT NULL
+    	nome VARCHAR(100) NOT NULL,
+    	cargo VARCHAR(20) NOT NULL,
+    	salario DECIMAL (10,2) NOT NULL
 );
 
 
@@ -27,12 +27,12 @@ ALTER TABLE Produtos
 -- clientes, incluindo o ID do cliente, o ID do produto, a quantidade comprada e o preço total.
 CREATE TABLE Compras (
 	id_compra INT AUTO_INCREMENT PRIMARY KEY,
-    id_cliente INT,
-    id_produto INT,
-    quantidade INT NOT NULL,
-    preco_total DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente),
-    FOREIGN KEY (id_produto) REFERENCES Produtos(id_produto)
+    	id_cliente INT,
+    	id_produto INT,
+    	quantidade INT NOT NULL,
+    	preco_total DECIMAL(10,2) NOT NULL,
+    	FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente),
+    	FOREIGN KEY (id_produto) REFERENCES Produtos(id_produto)
 );
 
 
@@ -48,7 +48,7 @@ ALTER TABLE Medicos
 -- produto na farmácia.
 CREATE TABLE Estoque (
 	id_estoque INT AUTO_INCREMENT PRIMARY KEY,
-    id_produto INT,
+    	id_produto INT,
 	quantidade INT NOT NULL,
     FOREIGN KEY (id_produto) REFERENCES Produtos (id_produto)
 );
@@ -67,12 +67,12 @@ ALTER TABLE Vendas
 -- consulta e a descrição dos sintomas.
 CREATE TABLE Consultas (
 	id_consulta INT AUTO_INCREMENT PRIMARY KEY,
-    id_cliente INT,
-    id_medico INT,
-    data_consulta DATE NOT NULL,
-    descricao_sintomas TEXT NOT NULL,
-    FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente),
-    FOREIGN KEY (id_medico) REFERENCES Medicos(id_medico)
+    	id_cliente INT,
+    	id_medico INT,
+    	data_consulta DATE NOT NULL,
+    	descricao_sintomas TEXT NOT NULL,
+    	FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente),
+    	FOREIGN KEY (id_medico) REFERENCES Medicos(id_medico)
 );
 
 
@@ -89,8 +89,8 @@ ALTER TABLE Clientes
 -- valor do desconto e a data de validade do desconto.
 CREATE TABLE Descontos (
 	id_desconto INT AUTO_INCREMENT PRIMARY KEY,
-    id_produto INT,
-    valor_desconto DECIMAL(10,2) NOT NULL,
-    data_validade DATE,
-    FOREIGN KEY (id_produto) REFERENCES Produtos(id_produto)
+    	id_produto INT,
+    	valor_desconto DECIMAL(10,2) NOT NULL,
+    	data_validade DATE,
+    	FOREIGN KEY (id_produto) REFERENCES Produtos(id_produto)
 );
